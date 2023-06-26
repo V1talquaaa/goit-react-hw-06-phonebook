@@ -1,5 +1,6 @@
 
 import PropTypes from 'prop-types'; 
+
 const Filter = ({handleNameInput}) => {
     
     return (
