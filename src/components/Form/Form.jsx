@@ -28,7 +28,7 @@ const onSubmit = (e) => {
 
     return (
       <form action="" onSubmit={onSubmit}>
-        <label htmlFor={nanoid()}>Name</label>
+        <label htmlFor={nanoid()}></label>
         <input
           type="text"
           id={nanoid()}
@@ -38,8 +38,9 @@ const onSubmit = (e) => {
           required
           onChange={onChange}
           value={name}
+          placeholder='Name'
         />
-        <label htmlFor={nanoid()}>Number</label>
+        <label htmlFor={nanoid()}></label>
         <input
           type="tel"
           name="number"
@@ -48,6 +49,7 @@ const onSubmit = (e) => {
           required
           onChange={onChange}
           value={number}
+          placeholder='Number'
         />
   
         <button type='submit'>

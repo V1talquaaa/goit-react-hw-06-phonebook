@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const myFilterSlice = createSlice({
   name: 'filter',
-  initialState: '',
+  initialState: {filter: ''},
   reducers: {
     filterContact(state, action) {
       // return state.filter(contact => contact.name.toLowerCase().include(action.payload.toLowerCase()))

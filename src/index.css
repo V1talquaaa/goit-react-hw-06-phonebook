@@ -8,6 +8,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+background: #000046;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #1CB5E0, #000046);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #1CB5E0, #000046); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 code {
@@ -16,7 +20,7 @@ code {
 }
 
 h2, p {
-  color: rgb(63, 56, 56);
+  color: rgb(255, 255, 255);
 }
 
 label, input {
@@ -32,9 +36,12 @@ button {
   margin-top: 20px;
   padding: 10px;
   display: block;
-  background-color: rgb(140, 140, 207);
+  background-color: rgb(16, 16, 155);
   border: none;
   border-radius: 5px;
   color: #fff;
   cursor: pointer;
+}
+button:is(:hover, :focus) {
+  outline-offset: 3px;
 }

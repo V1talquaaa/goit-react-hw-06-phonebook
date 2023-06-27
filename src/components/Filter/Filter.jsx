@@ -1,13 +1,10 @@
-
+import css from './Filter.module.css'
 import PropTypes from 'prop-types'; 
 
 const Filter = ({handleNameInput}) => {
     
     return (
-            <>
-            <p>Search by name</p>
-            <input type="text" name="filter" onChange={handleNameInput} />
-            </>
+            <input type="text" name="filter" onChange={handleNameInput} placeholder='Search by name' className={css.filterContact}/>
         )
     }
     

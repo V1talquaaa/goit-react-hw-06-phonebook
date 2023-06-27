@@ -3,12 +3,14 @@ import { Form } from './Form/Form';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 import { useSelector, useDispatch } from 'react-redux';
-import { add, remove, filterContact } from 'redux/store';
+import { add, remove } from 'redux/contacts/contactSlice';
+import { filterContact } from 'redux/contacts/filterSlice';
+import Container from 'ui/Container';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);
+  const {contacts} = useSelector(state => state.contacts);
+  const {filter} = useSelector(state => state.filter);
 
   const onSubmitContact = ({ name, number }) => {
     createContact({
@@ -23,6 +25,7 @@ export const App = () => {
       id: nanoid(),
     };
     dispatch(add(newUser));
+    
   };
 
   const handleNameInput = ({ target }) => {
@@ -34,11 +37,9 @@ export const App = () => {
   };
 
   const getContactBySearch = () => {
-    const filteredContact = contacts.filter(contact =>
+    return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
-    // const filteredContact = dispatch(filterContact(contacts))
-    return filteredContact;
   };
 
   const handleDelete = id => {
@@ -46,7 +47,7 @@ export const App = () => {
   };
 
   return (
-    <>
+      <Container>
       <h2>Phonebook</h2>
       <Form onSubmitContact={onSubmitContact} />
       <h2>Contacts</h2>
@@ -55,6 +56,7 @@ export const App = () => {
         contacts={getContactBySearch()}
         handleDelete={handleDelete}
       />
-    </>
+      </Container>
+    
   );
 };
