@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import css from './Filter.module.css'
 import { filterContact } from 'redux/store';
+import { updateContactList } from 'redux/contacts/contactSlice';
+
 
 
 const Filter = () => {
@@ -16,23 +18,18 @@ const Filter = () => {
         getContactBySearch()
       };
 
-      
-
       const getContactBySearch = () => {
         console.log(contacts)
         const filteredContactsList = contacts.filter(contact =>
           contact.name.toLowerCase().includes(filter.toLowerCase())
         );
         console.log(filteredContactsList)
+
       };
       
     return (
             <input type="text" name="filter" onChange={handleNameInput} placeholder='Search by name' className={css.filterContact}/>
         )
     }
-    
-    // Filter.propTypes = {
-    //     handleNameInput: PropTypes.func.isRequired,
-    // }
     
     export { Filter }

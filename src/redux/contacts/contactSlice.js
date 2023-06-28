@@ -16,8 +16,12 @@ export const myContactSlice = createSlice({
             const index = state.contacts.findIndex(task => task.id === action.payload);
             state.contacts.splice(index, 1);
             
-        }
+        },
+        // updateContactList(state, action) {
+
+        //     state.contacts = action.payload
+        // }
     }
 })
 
-export const {add, remove} = myContactSlice.actions
+export const {add, remove, updateContactList} = myContactSlice.actions
