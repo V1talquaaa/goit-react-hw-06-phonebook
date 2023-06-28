@@ -1,27 +1,37 @@
 import {  createSlice } from "@reduxjs/toolkit";
+import { nanoid } from "nanoid";
 import Notiflix from 'notiflix';
 
 export const myContactSlice = createSlice({
     name: 'contact',
     initialState: {contacts: []},
     reducers: {
-        add(state, action) {
+        add(state, {payload}) {
             const name = state.contacts.map((contact) => contact.name.toLowerCase())
-            if(name.includes(action.payload.name.toLowerCase())) {
+            if(name.includes(payload.name.toLowerCase())) {
                 return Notiflix.Notify.failure('This contact already exist')
             }
-            state.contacts.push(action.payload)
-        },
-        remove(state, action) {
-            const index = state.contacts.findIndex(task => task.id === action.payload);
-            state.contacts.splice(index, 1);
-            
-        },
-        // updateContactList(state, action) {
+            const newContact = {id: nanoid(), ...payload}
+            return {
+                ...state,
+                contacts: [...state.contacts, newContact]
+            }
 
-        //     state.contacts = action.payload
+        },
+        remove(state, {payload}) {
+            return {
+                ...state,
+                contacts: state.contacts.filter((contact) => contact.id !== payload)
+            }
+ 
+        },
+        // searchByFilter(state, {payload}) {
+        //     return {
+        //         ...state,
+        //         contacts: [...state.contacts, payload]
+        //     }
         // }
     }
 })
 
-export const {add, remove, updateContactList} = myContactSlice.actions
+export const {add, remove, searchByFilter} = myContactSlice.actions

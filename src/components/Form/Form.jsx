@@ -26,21 +26,15 @@ const Form = () => {
     setNumber('')
   }
 
-  const onSubmitContact = ({ name, number }) => {
-    createContact({
-      name: name,
-      number: number,
-    });
-  };
 
-const createContact = data => {
-  const newUser = {
-    ...data,
-    id: nanoid(),
+
+const onSubmitContact = ({ name, number }) => {
+  const newUer = {
+    name: name,
+    number: number,
   };
-  dispatch(add(newUser));
+  dispatch(add(newUer));
 };
-
 
 
     return (

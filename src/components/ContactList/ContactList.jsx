@@ -4,11 +4,19 @@ import { remove } from 'redux/contacts/contactSlice';
 
 const ContactList = () => {
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.contacts);
+  const filter = useSelector(state => state.filter);
 
   const handleDelete = (id) => {
     dispatch(remove(id));
+  };
+
+  const getContactBySearch = () => {
+    const filteredContactList = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
+    return filteredContactList;
   };
 
   return (
@@ -34,16 +42,4 @@ const ContactList = () => {
   );
 };
 
-// ContactList.propTypes = {
-//   contacts: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       name: PropTypes.string.isRequired,
-//       number: PropTypes.string.isRequired,
-//       id: PropTypes.string.isRequired,
-//     }).isRequired
-//   ).isRequired,
-//   handleDelete: PropTypes.func.isRequired,
-// };
-
 export { ContactList };
-
