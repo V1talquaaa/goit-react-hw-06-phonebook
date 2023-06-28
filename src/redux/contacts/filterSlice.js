@@ -6,8 +6,6 @@ export const myFilterSlice = createSlice({
   initialState: {filter: ''},
   reducers: {
     filterContact(state, action) {
-      // return state.filter(contact => contact.name.toLowerCase().include(action.payload.toLowerCase()))
-      // const filteredContact = contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()))
       return action.payload;
     },
   },

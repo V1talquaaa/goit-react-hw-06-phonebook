@@ -1,11 +1,12 @@
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import './Form.module.css'
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { add } from 'redux/contacts/contactSlice';
 
 
-const Form = ({onSubmitContact}) => {
-
+const Form = () => {
+  const dispatch = useDispatch()
   const [name, setName] = useState('')
   const [number, setNumber] = useState('')
 
@@ -16,15 +17,31 @@ const Form = ({onSubmitContact}) => {
     } else if(name === 'number') {
       setNumber(value)
     }
-
   }
 
-const onSubmit = (e) => {
-  e.preventDefault();
-  onSubmitContact({name:name, number:number})
-  setName('')
-  setNumber('')
-}
+  const onSubmit = (e) => {
+    e.preventDefault();
+    onSubmitContact({name:name, number:number})
+    setName('')
+    setNumber('')
+  }
+
+  const onSubmitContact = ({ name, number }) => {
+    createContact({
+      name: name,
+      number: number,
+    });
+  };
+
+const createContact = data => {
+  const newUser = {
+    ...data,
+    id: nanoid(),
+  };
+  dispatch(add(newUser));
+};
+
+
 
     return (
       <form action="" onSubmit={onSubmit}>
@@ -59,10 +76,6 @@ const onSubmit = (e) => {
     );
   };
   
-
-Form.propTypes = {
-  onSubmitContact: PropTypes.func.isRequired,
-}
 
 export { Form };
 
