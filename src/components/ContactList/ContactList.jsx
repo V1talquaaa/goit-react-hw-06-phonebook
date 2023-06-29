@@ -6,23 +6,23 @@ const ContactList = () => {
 
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.contacts);
-  // const filter = useSelector(state => state.filter);
+  const filter = useSelector(state => state.filter.filter);
 
   const handleDelete = (id) => {
     dispatch(remove(id));
   };
 
-  // const getContactBySearch = () => {
-  //   const filteredContactList = contacts.filter(contact =>
-  //     contact.name.toLowerCase().includes(filter.toLowerCase())
-  //   );
-  //   return filteredContactList;
-  // };
+  const getContactBySearch = () => {
+    const filteredContactList = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter)
+    );
+    return filteredContactList;
+  };
   
 
   return (
     <ul>
-      {contacts.map(({ name, number, id }) => {
+      {getContactBySearch().map(({ name, number, id }) => {
         return (
           <li key={id} className={css.contactList}>
             <p>
