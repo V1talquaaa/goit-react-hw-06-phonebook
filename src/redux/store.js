@@ -38,5 +38,3 @@ export const store = configureStore({
 export const persistor = persistStore(store);
 export const { add, remove } = myContactSlice.actions;
 export const { filterContact } = myFilterSlice.actions;
-
-
